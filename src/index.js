@@ -6,7 +6,16 @@ dotenv.config({
 });
 
 
-connectDB()
+connectDB()    //async method jab bhi complete hota hai tab o ek promiss return karta hai async db file me hai
+.then(() => {
+  app.listen(process.env.PORT || 8000, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
+  });
+})
+.catch((err) => {
+  console.log("MONGOBD connnection error index file", console.error());
+  
+})
 
 
 
