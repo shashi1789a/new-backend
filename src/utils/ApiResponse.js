@@ -1,11 +1,11 @@
-class ApiResponse{
-    constructor(statusCode, massage, data, massage ="success"){
-      this.statusCode = statusCode
-      this.massage = massage
-      this.data = data
-      this.success = statusCode < 400
-    
-}
+class ApiResponse {
+  constructor(statusCode, message, data , statusText = "success") {
+      this.statusCode = statusCode;
+      this.message = message; 
+      this.data = data;
+      this.success = statusCode < 400;
+      // this.statusText = statusText; 
+  }
 }
 
-export { ApiResponse};
+export { ApiResponse };

@@ -1,12 +1,12 @@
 // import { Schema } from "mongoose";
-import mongoose, {Schema} from "mongoose";
+import  mongoose , {Schema} from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
 
     username:{
-        Type: String,
+        type: String,
         required:true,
         unique:true,
         lowercase:true,
@@ -15,24 +15,24 @@ const userSchema = new Schema({
         
     },
     email:{
-        Type: String,
+        type: String,
         required:true,
         unique:true,
         lowercase:true,
         trim:true
     },
      fullname:{
-        Type: String,
+        type: String,
         required:true,
         trim:true,
         index:true
     },
     avatar:{
-        Type: String,
+        type: String,
         required:true
     },
     coverImage:{
-        Type: String,
+        type: String,
     },
     watchHistory:[
         {
@@ -59,7 +59,7 @@ userSchema.pre("save",async function (next) {
     this.password = await bcrypt.hash(this.password, 10);
     next();
     
-})//pre hook use for incrypt password just before data will be  saved it is a middleware element
+})                                                         //pre hook use for incrypt password just before data will be  saved it is a middleware element
 
 userSchema.methods.isPasswordCorrect = async function
 (password){
@@ -96,4 +96,4 @@ userSchema.methods.refreshTokenToken = function () {
 
 
 
-export const User = mongoose.model("User",userSchema);
+export const User = mongoose.model("User", userSchema);
